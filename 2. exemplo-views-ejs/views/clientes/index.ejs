@@ -1,0 +1,75 @@
+<%- include('../partials/header') %>
+
+    <%- include('../partials/nav') %>
+
+        <div class="container mt-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">📂 clientes</h4>
+                <a href="/clientes/nova" class="btn btn-success btn-sm">
+                    + Nova
+                </a>
+            </div>
+
+            <!-- 🖥️ DESKTOP (TABELA) -->
+            <div class="d-none d-md-block">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Cpf</th>
+                            <th width="150">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% clientes.forEach(cli=> { %>
+                            <tr>
+                                <td>
+                                    <%= cli.id %>
+                                </td>
+                                <td>
+                                    <%= cli.nome %>
+                                </td>
+                                <td>
+                                    <%= cli.cpf %>
+                                </td>
+                                <td>
+                                    <a href="/clientes/editar/<%= cli.id %>" class="btn btn-warning btn-sm">
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 📱 MOBILE (CARDS) -->
+            <div class="d-md-none">
+                <% clientes.forEach(cli=> { %>
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                <%= cli.nome %>
+                            </h5>
+
+                            <p class="card-text text-muted">
+                                ID: <%= cli.id %>
+                            </p>
+
+                            <a href="/clientes/editar/<%= cli.id %>" class="btn btn-warning btn-sm w-100">
+                                ✏️ Editar
+                            </a>
+
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+
+            <a href="/" class="btn btn-secondary w-100 mt-3">Voltar</a>
+
+        </div>
+
+        <%- include('../partials/footer') %>
